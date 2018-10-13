@@ -32,8 +32,7 @@ class ListItem extends Component {
       this.state.mode === 'view' ?
       <li>
         <div>
-          {this.props.file.id}
-          {this.props.file.attributes.data.name}
+          {this.props.file.attributes.filename} / {this.props.file.attributes.data.name}
         </div>
         <div>
           <span onClick={this.edit}>Edit</span>
@@ -41,7 +40,7 @@ class ListItem extends Component {
         </div>
       </li>
       : <li>
-          <input type="text" onChange={({ target: { value }}) => this.setState({ value: value })} />
+          <input type="text" value={this.state.value} onChange={({ target: { value }}) => this.setState({ value: value })} />
           <span onClick={this.update}>save</span>
           <span onClick={this.view}>ABORT NX</span>
         </li>
