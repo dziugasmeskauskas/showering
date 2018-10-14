@@ -21,24 +21,27 @@ class ListItem extends Component {
 
   view = () => this.changeMode('view')
 
-  delete = id => this.props.onDelete(id)
+  delete = () => this.props.onDelete(this.props.file.id)
 
   render() {
+    const { mode, value } = this.state
+    const { file } = this.props
+
     return (
-      this.state.mode === 'view'
+      mode === 'view'
       ? <li>
           <div className="info">
-            <span>Name: {this.props.file.attributes.data.name}</span>
-            <small>File name: {this.props.file.attributes.filename}</small>
+            <span>Name: {file.attributes.data.name}</span>
+            <small>File name: {file.attributes.filename}</small>
           </div>
           <div className="actions">
             <button onClick={this.edit}>Edit</button>
-            <button onClick={this.delete.bind(null, this.props.file.id)}>Delete</button>
+            <button onClick={this.delete}>Delete</button>
           </div>
         </li>
       : <li>
           <div>
-            <span>Name: </span><input type="text" value={this.state.value} onChange={({ target: { value }}) => this.setState({ value: value })} />
+            <span>Name: </span><input type="text" value={value} onChange={({ target: { value }}) => this.setState({ value: value })} />
           </div>
           <div className="actions">
             <button onClick={this.update}>Save</button>

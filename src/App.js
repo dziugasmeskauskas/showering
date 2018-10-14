@@ -16,6 +16,8 @@ class App extends Component {
       files: [],
       isUploading: false
     }
+
+    this.renderItem = this.renderItem.bind(this)
   }
 
   onDrop(files) {
@@ -42,8 +44,8 @@ class App extends Component {
 
   getItems = () => {
     this.service.get().then(response => response.json())
-    .then(({ data }) => {
-      this.setState({files: data})
+    .then(({ data: files }) => {
+      this.setState({ files })
       console.log(this.state);
     })
   }
@@ -92,6 +94,10 @@ class App extends Component {
     });
   }
 
+  renderItem(file) {
+    return <ListItem key={file.id} file={file} onDelete={this.delete} onUpdate={this.update} />
+  }
+
   render() {
     const { isUploading } = this.state;
     return (
@@ -112,7 +118,7 @@ class App extends Component {
         <h2>Dropped files</h2>
         <ul>
           {
-            this.state.files.map(file => <ListItem key={file.id} file={file} onDelete={this.delete} onUpdate={this.update} />)
+            this.state.files.map(this.renderItem)
           }
         </ul>
 
