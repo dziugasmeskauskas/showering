@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { toast } from 'react-toastify'
-
-import './list-item.css'
+import './ListItem.scss'
 
 class ListItem extends Component {
   constructor(props) {

@@ -12,8 +12,8 @@
     "react-toastify": "^4.4.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
     "test": "react-scripts test",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
@@ -29,6 +29,10 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "gh-pages": "^2.0.1"
+    "gh-pages": "^2.0.1",
+    "node-sass": "^4.9.3",
+    "react-app-rewire-sass-modules": "^1.1.7",
+    "react-app-rewired": "^1.6.2",
+    "sass-loader": "^7.1.0"
   }
 }
