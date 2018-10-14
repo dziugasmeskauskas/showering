@@ -3,9 +3,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Dropzone from 'react-dropzone'
 import soundService from './soundsService';
+import BeatLoader from 'react-spinners/BeatLoader';
 import ListItem from './component/list-item';
 
 import './App.css';
+import { ScaleLoader } from 'react-spinners';
 
 class App extends Component {
   constructor() {
@@ -95,9 +97,15 @@ class App extends Component {
     const { isUploading } = this.state;
     return (
       <div className="dropzone">
-        {
-          isUploading && <div className="cover">File uploading! <br/> Please wait</div>
-        }
+        <div className={`cover ${isUploading ? 'show' : ''}`}>
+          <span className="text"> File uploading! <br/> Please wait</span>
+          <ScaleLoader
+            sizeUnit={"px"}
+            size={400}
+            color={'white'}
+            loading={true}
+          />
+        </div>
         <Dropzone onDrop={this.onDrop.bind(this)}
           style={{
             width: 500,

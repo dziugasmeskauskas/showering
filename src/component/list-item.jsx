@@ -16,7 +16,7 @@ class ListItem extends Component {
 
   changeMode = mode => this.setState({ mode });
 
-  update = async  () => {
+  update = async () => {
     await this.props.onUpdate(this.props.file.id, this.state.value);
     this.view();
   }
@@ -29,20 +29,25 @@ class ListItem extends Component {
 
   render() {
     return (
-      this.state.mode === 'view' ?
-      <li>
-        <div>
-          {this.props.file.attributes.filename} / {this.props.file.attributes.data.name}
-        </div>
-        <div>
-          <span onClick={this.edit}>Edit</span>
-          <span onClick={this.delete.bind(null, this.props.file.id)}>Delete</span>
-        </div>
-      </li>
+      this.state.mode === 'view'
+      ? <li>
+          <div className="info">
+            <span>Name: {this.props.file.attributes.data.name}</span>
+            <small>File name: {this.props.file.attributes.filename}</small>
+          </div>
+          <div className="actions">
+            <button onClick={this.edit}>Edit</button>
+            <button onClick={this.delete.bind(null, this.props.file.id)}>Delete</button>
+          </div>
+        </li>
       : <li>
-          <input type="text" value={this.state.value} onChange={({ target: { value }}) => this.setState({ value: value })} />
-          <span onClick={this.update}>save</span>
-          <span onClick={this.view}>ABORT NX</span>
+          <div>
+            <span>Name: </span><input type="text" value={this.state.value} onChange={({ target: { value }}) => this.setState({ value: value })} />
+          </div>
+          <div className="actions">
+            <button onClick={this.update}>Save</button>
+            <button onClick={this.view}>Cancel</button>
+          </div>
         </li>
     );
   }
