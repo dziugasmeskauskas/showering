@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { toast } from 'react-toastify';
+import React, { Component } from 'react'
+import { toast } from 'react-toastify'
 
-import './list-item.css';
+import './list-item.css'
 
 class ListItem extends Component {
   constructor(props) {
@@ -12,20 +12,18 @@ class ListItem extends Component {
     }
   }
 
-
-
-  changeMode = mode => this.setState({ mode });
+  changeMode = mode => this.setState({ mode })
 
   update = async () => {
-    await this.props.onUpdate(this.props.file.id, this.state.value);
-    this.view();
+    await this.props.onUpdate(this.props.file.id, this.state.value)
+    this.view()
   }
 
   edit = () => this.changeMode('edit')
 
   view = () => this.changeMode('view')
 
-  delete = id => this.props.onDelete(id);
+  delete = id => this.props.onDelete(id)
 
   render() {
     return (
@@ -49,8 +47,8 @@ class ListItem extends Component {
             <button onClick={this.view}>Cancel</button>
           </div>
         </li>
-    );
+    )
   }
 }
 
-export default ListItem;
+export default ListItem
